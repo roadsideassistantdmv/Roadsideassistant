@@ -275,7 +275,7 @@
     .pay-note .label{
       font-weight:800; letter-spacing:.2px;
       color:#fff;
-      background:linear-gradient(135deg,#10b981,#34d399);
+      background:linear-gradient(135deg,#bf2dc6,#ce2eac);
       padding:.5rem .75rem; border-radius:10px; border:0;
     }
     .pay-note .token{
@@ -286,7 +286,7 @@
     }
     .pay-note .token.is-preferred{
       outline:2px solid rgba(16,185,129,.55);
-      background:rgba(16,185,129,.22);
+      background: #bf2dc6;
     }
 
 
@@ -522,52 +522,12 @@
           </div>
           <div class="cta-row">
             <a class="btn btn-primary" href="tel:+17032963523">Call +1 (703) 296-3523</a>
-            <a class="btn btn-ghost" href="#assist">Request call-back</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quick request form -->
-    <section id="assist" class="container reveal" aria-labelledby="assist-title">
-      <div class="section-head">
-        <div>
-          <h2 id="assist-title">Request a call-back</h2>
-          <p>Share a few details. We will call you within minutes.</p>
-        </div>
-      </div>
 
-      <form onsubmit="event.preventDefault(); alert('Thanks. A dispatcher will contact you shortly.'); this.reset();" class="grid" style="grid-template-columns:repeat(12,1fr);gap:14px">
-        <div style="grid-column:span 6" class="field">
-          <label for="name" class="chip" style="display:inline-block;margin-bottom:8px">Full name</label>
-          <input id="name" name="name" required placeholder="Jane Doe" class="input">
-        </div>
-        <div style="grid-column:span 6" class="field">
-          <label for="phone" class="chip" style="display:inline-block;margin-bottom:8px">Phone</label>
-          <input id="phone" name="phone" required inputmode="tel" placeholder="+1 (555) 000-0000" class="input">
-        </div>
-        <div style="grid-column:span 7" class="field">
-          <label for="location" class="chip" style="display:inline-block;margin-bottom:8px">Location</label>
-          <input id="location" name="location" required placeholder="Nearest cross-streets or pin link" class="input">
-        </div>
-        <div style="grid-column:span 5" class="field">
-          <label for="service" class="chip" style="display:inline-block;margin-bottom:8px">Service</label>
-          <select id="service" name="service" class="input">
-            <option>Jump Starts — $80</option>
-            <option>Car lockedout — $150</option>
-            <option>Tire repair — $150</option>
-            <option>Fuel — $100</option>
-          </select>
-        </div>
-        <div style="grid-column:span 12" class="field">
-          <label for="notes" class="chip" style="display:inline-block;margin-bottom:8px">Notes</label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Anything else we should know?" class="input"></textarea>
-        </div>
-        <div style="grid-column:span 12">
-          <button class="btn btn-primary" type="submit">Send request</button>
-        </div>
-      </form>
-    </section>
   </main>
 
   <footer class="container">
@@ -600,7 +560,6 @@
       <div>
         <h4>Contact</h4>
         <p><a href="tel:+17032963523">+1 (703) 296-3523</a></p>
-        <p><a href="#assist">Request call-back</a></p>
         <p><a href="#contact">24/7 dispatch</a></p>
       </div>
     </div>
