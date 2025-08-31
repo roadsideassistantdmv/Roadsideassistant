@@ -1,608 +1,618 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoadGuard - 24/7 Roadside Assistance</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #2c3e50;
-            --accent-color: #3498db;
-            --light-bg: #f4f7f6;
-            --dark-bg: #2c3e50;
-            --text-light: #ecf0f1;
-            --text-dark: #34495e;
-            --shadow-light: rgba(0, 0, 0, 0.08);
-            --shadow-dark: rgba(0, 0, 0, 0.2);
-        }
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>RoadGuard — 24/7 Roadside Assistance</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.6.96/css/materialdesignicons.min.css">
 
-        html {
-            scroll-behavior: smooth;
-        }
 
-        body {
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: #fff;
-        }
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #fff;
-            padding: 1rem 2rem;
-            z-index: 1000;
-            box-shadow: 0 4px 15px var(--shadow-light);
-            transition: all 0.4s ease;
-        }
+  <style>
+    :root{
+      --brand:#0a7cff;
+      --brand-2:#60a5ff;
+      --ink:#0f172a;
+      --ink-2:#334155;
+      --muted:#94a3b8;
+      --bg:#0b1220;               /* deep navy */
+      --bg-2:#0f1b33;             /* card glass tint */
+      --glass: rgba(255,255,255,.06);
+      --glass-strong: rgba(255,255,255,.12);
+      --ring: rgba(10,124,255,.35);
+      --ok:#10b981;
+      --warn:#f59e0b;
+      --danger:#ef4444;
+      --shadow: 0 10px 30px rgba(2,12,27,.25);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      color-scheme: dark light;
+    }
 
-        .navbar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      line-height:1.6;
+      color: #e5efff;
+      background:
+        radial-gradient(1200px 600px at -10% -20%, rgba(96,165,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(16,185,129,.10), transparent 60%),
+        conic-gradient(from 210deg at 50% -10%, rgba(10,124,255,.18), transparent 40%),
+        var(--bg);
+      background-attachment: fixed;
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
+    img{max-width:100%;display:block}
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+    /* Skip link */
+    .skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:1rem;top:1rem;width:auto;height:auto;background:#fff;color:#000;padding:.5rem .75rem;border-radius:8px;z-index:10000}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
+    /* Top progress bar */
+    .progress{
+      position:fixed;inset:0 auto auto 0;height:3px;width:0;background:linear-gradient(90deg,var(--brand),#14b8a6);
+      z-index:9999;box-shadow:0 0 0 1px rgba(255,255,255,.06) inset
+    }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            display: block;
-            margin-top: 5px;
-            right: 0;
-            background: var(--primary-color);
-            transition: width 0.4s ease;
-        }
+    /* Header */
+    .navbar{
+      position:sticky;top:0;z-index:1000;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .container{width:min(1200px,92%);margin-inline:auto}
+    .nav-inner{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff
+    }
+    .brand svg{width:34px;height:34px;filter:drop-shadow(0 4px 16px rgba(10,124,255,.35))}
+    .brand strong{font-weight:700;letter-spacing:.3px;font-size:1.15rem}
 
-        .nav-links a:hover::after {
-            width: 100%;
-            left: 0;
-            background: var(--primary-color);
-        }
+    .nav-links{display:flex;gap:26px;align-items:center}
+    .nav-links a{
+      color:#e6f0ff;text-decoration:none;font-weight:500;opacity:.9;position:relative
+    }
+    .nav-links a:after{
+      content:"";position:absolute;left:0;bottom:-8px;height:2px;width:0;background:linear-gradient(90deg,var(--brand),var(--brand-2));
+      transition:width .28s ease
+    }
+    .nav-links a:hover:after{width:100%}
 
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
+    .cta-sm{
+      padding:.65rem 1rem;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;text-decoration:none;font-weight:600;box-shadow:0 10px 20px var(--ring)
+    }
 
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
+    .hamburger{display:none;flex-direction:column;gap:5px}
+    .hamburger span{width:26px;height:2px;background:#dbe7ff;border-radius:2px;transition:.3s}
 
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)),
-                        url('https://images.unsplash.com/photo-1543958013-ec8467b7f1be?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 2rem;
-        }
+    /* Mobile menu */
+    @media (max-width:900px){
+      .nav-links{position:fixed;inset:64px 0 auto 0;background:color-mix(in oklab, var(--bg) 92%, transparent);
+        border-top:1px solid rgba(255,255,255,.06);backdrop-filter:blur(10px);
+        flex-direction:column;padding:18px;transform:translateY(-120%);transition:.35s;gap:18px}
+      .nav-links.open{transform:translateY(0)}
+      .hamburger{display:flex}
+      .nav-links .cta-sm{width:100%;text-align:center}
+    }
 
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    /* Hero */
+    .hero{
+      position:relative;isolation:isolate;padding:calc(64px + 4vh) 0 8vh;
+      min-height:calc(60dvh + 120px);display:grid;place-items:center;overflow:hidden
+    }
+    /* decorative orbs */
+    .hero:before,.hero:after{
+      content:"";position:absolute;border-radius:50%;filter:blur(60px);z-index:-1;opacity:.5
+    }
+    .hero:before{width:520px;height:520px;background:radial-gradient(closest-side, rgba(10,124,255,.35), transparent);
+      left:-120px;top:-100px}
+    .hero:after{width:520px;height:520px;background:radial-gradient(closest-side, rgba(20,184,166,.28), transparent);
+      right:-120px;bottom:-140px}
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.2;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards;
-        }
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:min(5vw,48px);align-items:center}
+    .hero h1{
+      font-size:clamp(2rem,5vw,3.6rem);line-height:1.1;margin:0 0 14px;font-weight:800;
+      letter-spacing:.2px;text-wrap:balance
+    }
+    .hero p{color:#c8d7ff;max-width:60ch;font-weight:400;margin:0 0 24px}
+    .hero .badges{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 26px}
+    .chip{
+      font-size:.85rem;color:#eaf2ff;background:var(--glass);border:1px solid var(--glass-strong);
+      padding:.5rem .75rem;border-radius:999px;backdrop-filter:blur(6px)
+    }
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+      padding:.9rem 1.2rem;border-radius:14px;text-decoration:none;font-weight:700;letter-spacing:.2px;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 14px 32px var(--ring)
+    }
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-ghost{border:1px solid var(--glass-strong);background:var(--glass);color:#e7f1ff}
+    .btn-ghost:hover{background:color-mix(in oklab, var(--glass) 50%, #fff 6%)}
 
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.4rem);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s 0.5s forwards;
-        }
+    /* Section shared */
+    section{padding:80px 0}
+    .section-head{
+      margin-bottom:34px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap
+    }
+    .section-head h2{
+      font-size:clamp(1.6rem,3vw,2.2rem);margin:0;font-weight:800;color:#eef4ff
+    }
+    .section-head p{margin:6px 0 0;color:#b7c7ea;max-width:60ch}
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
-        }
+    /* Services (with price chips) */
+    .service{
+      grid-column:span 3;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius-lg);padding:22px;transition:transform .2s ease, border-color .2s ease, background .2s ease;
+      position:relative;overflow:hidden
+    }
+    .service:hover{transform:translateY(-4px);border-color:rgba(96,165,255,.35);background:rgba(255,255,255,.05)}
+    .service svg{width:38px;height:38px}
+    .service h3{margin:12px 0 6px;font-size:1.1rem}
+    .service p{margin:0;color:#c8d7ff}
+    .price-badge{
+      position:absolute;top:14px;right:14px;background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#fff;padding:.4rem .6rem;border-radius:10px;font-weight:800;font-size:.9rem;box-shadow:0 6px 18px var(--ring)
+    }
+    .service .actions{margin-top:14px}
+    .service .actions .btn{padding:.6rem .9rem;border-radius:10px}
 
-        section {
-            padding: 6rem 2rem;
-        }
+    @media (max-width:1100px){.service{grid-column:span 6}}
+    @media (max-width:700px){.service{grid-column:span 12}}
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
+    /* How it works */
+    .steps{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    .step{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px
+    }
+    .step .num{
+      width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));font-weight:800
+    }
+    @media (max-width:900px){.steps{grid-template-columns:1fr}}
 
-        .section-title h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--secondary-color);
-            font-weight: 600;
-            position: relative;
-        }
+    /* Testimonials */
+    .belt{
+      display:grid;grid-auto-flow:column;grid-auto-columns:calc(33.333% - 12px);
+      gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px
+    }
+    .belt::-webkit-scrollbar{height:8px}
+    .belt::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:999px}
+    @media (max-width:1100px){.belt{grid-auto-columns:calc(50% - 9px)}}
+    @media (max-width:700px){.belt{grid-auto-columns:100%}}
+    .tcard{
+      scroll-snap-align:start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px
+    }
+    .stars{display:flex;gap:6px}
+    .t-user{display:flex;align-items:center;gap:12px}
+    .avatar{
+      width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid rgba(10,124,255,.45)
+    }
+    .tcard p{color:#dbe7ff}
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -10px;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 5px;
-        }
+    /* CTA strip */
+    .cta{
+      position:relative;overflow:hidden;border-radius:var(--radius-xl);
+      background:
+        radial-gradient(800px 120px at 0% 0%, rgba(96,165,255,.15), transparent 60%),
+        radial-gradient(800px 120px at 100% 100%, rgba(20,184,166,.15), transparent 60%),
+        linear-gradient(135deg, #0c1a38, #0a1530)
+    }
+    .cta .inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 22px;flex-wrap:wrap}
+    .cta h3{margin:0}
+    .cta p{margin:6px 0 0;color:#c7d6fb}
 
-        .services, .testimonials {
-            background: var(--light-bg);
-        }
+    /* Footer */
+    footer{padding:40px 0;color:#b8c7e6}
+    .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+    .foot-grid a{color:#dce7ff;text-decoration:none;opacity:.9}
+    .foot-grid a:hover{opacity:1}
+    @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:600px){.foot-grid{grid-template-columns:1fr}}
 
-        .services-grid, .pricing-grid, .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(16px);transition:.5s ease}
+    .reveal.show{opacity:1;transform:none}
 
-        .service-card, .pricing-card, .testimonial-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            opacity: 0;
-            transform: translateY(40px);
-            text-align: center;
-        }
+    /* Sticky emergency button */
+    .fab{
+      position:fixed;right:clamp(12px,2vw,22px);bottom:clamp(12px,2vw,22px);z-index:1000;
+      border-radius:999px;padding:.9rem 1.1rem;background:linear-gradient(135deg,var(--danger),#ff6b6b);
+      color:#fff;text-decoration:none;font-weight:800;box-shadow:0 14px 32px rgba(239,68,68,.35)
+    }
 
-        .service-card:hover, .pricing-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 40px var(--shadow-dark);
-        }
+    /* form inputs */
+    .input{
+      width:100%;padding:.9rem 1rem;border-radius:12px;color:#e7f1ff;
+      background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);outline:none
+    }
+    .input:focus{border-color:color-mix(in oklab, var(--brand) 65%, #fff 10%);box-shadow:0 0 0 3px rgba(10,124,255,.18)}
+    label{user-select:none}
 
-        .service-card.visible, .pricing-card.visible, .testimonial-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal{transition:none}
+      .btn,.service{transition:none}
+    }
+    /* Font Awesome icons in service cards */
+    .service .icon { font-size: 38px; line-height: 1; color: #cfe3ff; }
 
-        .service-card .service-icon {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-            font-weight: 600;
-        }
-
-        .pricing-card {
-            background: linear-gradient(145deg, #f0f0f0, #ffffff);
-            border: 1px solid #e0e0e0;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 1rem 0 1.5rem;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-card li {
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-        }
-        
-        .pricing-card li::before {
-            content: '✓';
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .testimonial-card {
-            box-shadow: 0 8px 25px var(--shadow-light);
-            text-align: left;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            text-align: center;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            margin-top: 1rem;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 1rem;
-            box-shadow: 0 4px 10px var(--shadow-light);
-            border: 3px solid var(--primary-color);
-            object-fit: cover;
-        }
-
-        .author-info {
-            line-height: 1.4;
-        }
-
-        .author-info strong {
-            display: block;
-            font-size: 1.1rem;
-            color: var(--secondary-color);
-        }
-
-        .author-info p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #777;
-            font-style: normal;
-        }
-
-        .cta {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-                        url('https://images.unsplash.com/photo-1543958013-ec8467b7f1be?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        footer {
-            background: var(--dark-bg);
-            color: var(--text-light);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                right: -100%;
-                top: 72px;
-                flex-direction: column;
-                background: #fff;
-                width: 100%;
-                text-align: center;
-                transition: 0.4s;
-                box-shadow: 0 2px 10px var(--shadow-light);
-                padding: 2rem 0;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links a {
-                display: block;
-                padding: 1rem;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .nav-links a::after {
-                content: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hamburger.active div:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active div:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .hamburger.active div:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-content">
-            <a href="#" class="logo">RoadGuard</a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </nav>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="progress" id="progress"></div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>24/7 Roadside Assistance You Can Trust</h1>
-            <p>We're here when you need us most. Professional, reliable, and fast service.</p>
-            <a href="#contact" class="btn">Get Help Now</a>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <!-- Road + Shield mark -->
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#0a7cff"/>
+              <stop offset="1" stop-color="#60a5ff"/>
+            </linearGradient>
+          </defs>
+        <path d="M32 4c8 6 16 6 24 0v24c0 14-10 24-24 32C18 52 8 42 8 28V4c8 6 16 6 24 0Z" fill="url(#g)"/>
+        <path d="M18 38c6-8 12-12 18-20" stroke="#dbf0ff" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <circle cx="36" cy="16" r="2" fill="#dbf0ff"/>
+        </svg>
+        <strong>RoadGuard</strong>
+      </a>
+
+      <nav class="nav-links" id="nav">
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact" class="cta-sm">Get help</a>
+      </nav>
+
+      <button class="hamburger" id="ham" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>24/7 roadside help, fast and professional</h1>
+        <p>Licensed technicians. Live dispatch. Typical arrival in 15 to 30 minutes in covered areas. From jump starts to towing, RoadGuard has you covered.</p>
+        <div class="badges">
+          <span class="chip">Verified techs</span>
+          <span class="chip">Live tracking</span>
+          <span class="chip">Nationwide partners</span>
+          <span class="chip">Transparent pricing</span>
         </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="tel:1800ROADHELP" aria-label="Call RoadGuard now">Call now: 1-800-ROADHELP</a>
+          <a class="btn btn-ghost" href="#services">View services & prices</a>
+        </div>
+      </div>
+      <!-- (aside removed as per your change) -->
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- Services with prices -->
+    <section id="services" class="container reveal">
+      <div class="section-head">
+        <div>
+          <h2>Services & flat rates</h2>
+          <p>Clear, upfront pricing. Pay only when you need help.</p>
+        </div>
+        <a class="btn btn-ghost" href="#contact">Request assistance</a>
+      </div>
+
+      <div class="grid">
+        <!-- Jump Starts — $80 -->
+        <article class="service">
+          <span class="price-badge">$80</span>
+          <i class="mdi mdi-car-battery icon" aria-hidden="true"></i>
+
+          <h3>Jump Starts</h3>
+          <p>Heavy-duty booster packs, battery health check, and safe procedures for vehicles.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="tel:1800ROADHELP">Call for jump</a>
+          </div>
+        </article>
+
+        <!-- Car lockedout — $150 -->
+        <article class="service">
+          <span class="price-badge">$150</span>
+          <i class="mdi mdi-car-key icon" aria-hidden="true"></i>
+
+
+          <h3>Car lockedout</h3>
+          <p>Non-destructive entry by trained technicians for most makes and models.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="tel:1800ROADHELP">Unlock my car</a>
+          </div>
+        </article>
+
+        <!-- Tire repair — $150 -->
+        <article class="service">
+          <span class="price-badge">$150</span>
+          <i class="mdi mdi-tire icon" aria-hidden="true"></i>
+
+          <h3>Tire repair</h3>
+          <p>On-the-spot patch or spare install with torque-checked lugs and safety cones.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="tel:1800ROADHELP">Fix my tire</a>
+          </div>
+        </article>
+
+        <!-- Fuel — $100 -->
+        <article class="service">
+          <span class="price-badge">$100</span>
+          <i class="mdi mdi-gas-station icon" aria-hidden="true"></i>
+
+          <h3>Fuel</h3>
+          <p>Emergency fuel delivery to your location with receipt-backed transparency.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="tel:1800ROADHELP">Bring fuel</a>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <main>
-        <section id="services" class="services">
-            <div class="section-title">
-                <h2>Our Services</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/16903875984443543952_0" alt="Battery Jump Start" class="service-icon">
-                    <h3>Battery Jump Start</h3>
-                    <p>Quick and reliable battery jump start service to get you back on the road.</p>
-                </div>
-                <div class="service-card">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/14300895562151737795_0" alt="Flat Tire Change" class="service-icon">
-                    <h3>Flat Tire Change</h3>
-                    <p>Expert tire change service with proper tools and equipment.</p>
-                </div>
-                <div class="service-card">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/2723500310307071193_0" alt="Fuel Delivery" class="service-icon">
-                    <h3>Fuel Delivery</h3>
-                    <p>Run out of gas? We'll bring fuel right to your location.</p>
-                </div>
-            </div>
-        </section>
+    <!-- How it works -->
+    <section id="how" class="container reveal">
+      <div class="section-head">
+        <div>
+          <h2>How it works</h2>
+          <p>Simple steps that move fast when you need help right now.</p>
+        </div>
+      </div>
 
-        <section id="pricing" class="pricing">
-            <div class="section-title">
-                <h2>Pricing Plans</h2>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Basic</h3>
-                    <div class="price">$49/yr</div>
-                    <ul>
-                        <li>24/7 Roadside Assistance</li>
-                        <li>Up to 5 miles towing</li>
-                        <li>Basic battery service</li>
-                        <li>Tire change service</li>
-                    </ul>
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Premium</h3>
-                    <div class="price">$99/yr</div>
-                    <ul>
-                        <li>24/7 Priority Assistance</li>
-                        <li>Up to 50 miles towing</li>
-                        <li>Advanced battery service</li>
-                        <li>All basic services included</li>
-                    </ul>
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Ultimate</h3>
-                    <div class="price">$149/yr</div>
-                    <ul>
-                        <li>24/7 VIP Assistance</li>
-                        <li>Unlimited towing</li>
-                        <li>All premium services included</li>
-                        <li>Trip interruption coverage</li>
-                    </ul>
-                    <a href="#" class="btn">Choose Plan</a>
-                </div>
-            </div>
-        </section>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Tell us what happened</h3>
+          <p>Use the call button or quick form. We capture vehicle and location automatically where supported.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>We dispatch the nearest tech</h3>
+          <p>Live ETA with status updates and a call-back number for the assigned technician.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>You are back on the road</h3>
+          <p>We complete a quick safety check and send a digital receipt for your records.</p>
+        </div>
+      </div>
+    </section>
 
-        <section id="testimonials" class="testimonials">
-            <div class="section-title">
-                <h2>Customer Testimonials</h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p>"Excellent service! Arrived in 20 minutes and got my car started quickly. Highly recommended!"</p>
-                    <div class="testimonial-author">
-                        <img src="
+    <!-- Testimonials -->
+    <section id="testimonials" class="container reveal">
+      <div class="section-head">
+        <div>
+          <h2>Customers</h2>
+          <p>Real riders and drivers who got back on the road quickly.</p>
+        </div>
+      </div>
 
-https://www.ethnicmusical.com/wp-content/uploads/2020/06/testimonial-avatar-female-2-ux-builder-element.jpg
-" alt="John Smith" class="author-avatar">
-                        <div class="author-info">
-                            <strong>Sarah Johnson</strong>
-                            <p>Chicago, IL</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Professional and courteous service. The annual membership has already paid for itself!"</p>
-                    <div class="testimonial-author">
-                        <img src="
+      <div class="belt" aria-label="Testimonials">
+        <article class="tcard">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a" aria-hidden="true"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+          </div>
+          <p>Arrived in under 20 minutes and had my battery tested and started without upselling. Clean, professional, efficient.</p>
+          <div class="t-user">
+            <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Portrait of Sarah Johnson">
+            <div><strong>Sarah Johnson</strong><div style="color:#9fb3de">Chicago, IL</div></div>
+          </div>
+        </article>
 
-https://www.ethnicmusical.com/wp-content/uploads/2020/06/testimonial-avatar-male-1-ux-builder.jpg
-" alt="Sarah Johnson" class="author-avatar">
-                        <div class="author-info">
-                            <strong>John Smith</strong>
-                            <p>Houston, TX</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Fast response time and very helpful staff. They really saved me when I had a flat tire on the highway."</p>
-                    <div class="testimonial-author">
-                        <img src="https://www.ethnicmusical.com/wp-content/uploads/2020/06/testimonial-avatar-male-2-ux-builder-element.jpg" alt="Mike Brown" class="author-avatar">
-                        <div class="author-info">
-                            <strong>Mike Brown</strong>
-                            <p>Los Angeles, CA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <article class="tcard">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+          </div>
+          <p>Tire change on the shoulder felt safe and quick. The tech checked torque twice and had cones out in seconds.</p>
+          <div class="t-user">
+            <img class="avatar" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=200&auto=format&fit=crop" alt="Portrait of John Smith">
+            <div><strong>John Smith</strong><div style="color:#9fb3de">Houston, TX</div></div>
+          </div>
+        </article>
 
-        <section id="contact" class="cta">
-            <div class="cta-content">
-                <h2>Need Immediate Assistance?</h2>
-                <p>We're available 24/7 to help you get back on the road.</p>
-                <a href="tel:1800ROADHELP" class="btn">Call Now: 1-800-ROADHELP</a>
-            </div>
-        </section>
-    </main>
+        <article class="tcard">
+          <div class="stars">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#fde68a"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7L12 16.8 5.9 20l1.5-6.7L2.3 8.8l6.8-.6L12 2z"/></svg>
+          </div>
+          <p>Fuel delivery was quick and they scanned for leaks before leaving. The follow-up text with the receipt was useful.</p>
+          <div class="t-user">
+            <img class="avatar" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=200&auto=format&fit=crop" alt="Portrait of Mike Brown">
+            <div><strong>Mike Brown</strong><div style="color:#9fb3de">Los Angeles, CA</div></div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 RoadGuard. All rights reserved.</p>
-    </footer>
+    <!-- CTA -->
+    <section id="contact" class="container reveal">
+      <div class="cta">
+        <div class="inner">
+          <div>
+            <h3>Need help right now?</h3>
+            <p>Call our dispatcher or request a call-back. We respond 24/7.</p>
+          </div>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="tel:1800ROADHELP">Call 1-800-ROADHELP</a>
+            <a class="btn btn-ghost" href="#assist">Request call-back</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Navbar toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+    <!-- Quick request form -->
+    <section id="assist" class="container reveal" aria-labelledby="assist-title">
+      <div class="section-head">
+        <div>
+          <h2 id="assist-title">Request a call-back</h2>
+          <p>Share a few details. We will call you within minutes.</p>
+        </div>
+      </div>
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
+      <form onsubmit="event.preventDefault(); alert('Thanks. A dispatcher will contact you shortly.'); this.reset();" class="grid" style="grid-template-columns:repeat(12,1fr);gap:14px">
+        <div style="grid-column:span 6" class="field">
+          <label for="name" class="chip" style="display:inline-block;margin-bottom:8px">Full name</label>
+          <input id="name" name="name" required placeholder="Jane Doe" class="input">
+        </div>
+        <div style="grid-column:span 6" class="field">
+          <label for="phone" class="chip" style="display:inline-block;margin-bottom:8px">Phone</label>
+          <input id="phone" name="phone" required inputmode="tel" placeholder="+1 (555) 000-0000" class="input">
+        </div>
+        <div style="grid-column:span 7" class="field">
+          <label for="location" class="chip" style="display:inline-block;margin-bottom:8px">Location</label>
+          <input id="location" name="location" required placeholder="Nearest cross-streets or pin link" class="input">
+        </div>
+        <div style="grid-column:span 5" class="field">
+          <label for="service" class="chip" style="display:inline-block;margin-bottom:8px">Service</label>
+          <select id="service" name="service" class="input">
+            <option>Jump Starts — $80</option>
+            <option>Car lockedout — $150</option>
+            <option>Tire repair — $150</option>
+            <option>Fuel — $100</option>
+          </select>
+        </div>
+        <div style="grid-column:span 12" class="field">
+          <label for="notes" class="chip" style="display:inline-block;margin-bottom:8px">Notes</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Anything else we should know?" class="input"></textarea>
+        </div>
+        <div style="grid-column:span 12">
+          <button class="btn btn-primary" type="submit">Send request</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#0a7cff"/><stop offset="1" stop-color="#60a5ff"/></linearGradient></defs>
+            <path d="M32 4c8 6 16 6 24 0v24c0 14-10 24-24 32C18 52 8 42 8 28V4c8 6 16 6 24 0Z" fill="url(#g2)"/>
+            <path d="M18 38c6-8 12-12 18-20" stroke="#dbf0ff" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <circle cx="36" cy="16" r="2" fill="#dbf0ff"/>
+          </svg>
+          <strong>RoadGuard</strong>
+        </a>
+        <p style="color:#9fb3de;margin:12px 0 0">Trusted roadside assistance for drivers who value speed and safety.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <p><a href="#how">How it works</a></p>
+        <p><a href="#services">Services & prices</a></p>
+        <p><a href="#testimonials">Reviews</a></p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <p><a href="#services">Jump Starts — $80</a></p>
+        <p><a href="#services">Car lockedout — $150</a></p>
+        <p><a href="#services">Tire repair — $150</a></p>
+        <p><a href="#services">Fuel — $100</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><a href="tel:1800ROADHELP">1-800-ROADHELP</a></p>
+        <p><a href="#assist">Request call-back</a></p>
+        <p><a href="#contact">24/7 dispatch</a></p>
+      </div>
+    </div>
+    <div style="margin-top:18px;color:#8ea5cf">© <span id="year"></span> RoadGuard. All rights reserved.</div>
+  </footer>
+
+  <!-- Sticky FAB -->
+  <a class="fab" href="tel:1800ROADHELP" aria-label="Emergency call">Emergency • Call</a>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav
+    const ham = document.getElementById('ham');
+    const nav = document.getElementById('nav');
+    ham?.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      ham.setAttribute('aria-expanded', String(open));
+      ham.classList.toggle('active');
+    });
+    // Close menu on nav click (mobile)
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open'); ham.setAttribute('aria-expanded','false');
+    }));
+
+    // Scroll progress bar
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
+      progress.style.width = Math.max(0, Math.min(1, scrolled)) * 100 + '%';
+    };
+    document.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }});
+    }, {threshold: .18});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Micro-parallax on service cards (respects reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!prefersReduced){
+      document.querySelectorAll('.service').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width - .5) * 6;
+          const y = ((e.clientY - r.top) / r.height - .5) * 6;
+          card.style.transform = `translateY(-4px) rotateX(${ -y }deg) rotateY(${ x }deg)`;
         });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .pricing-card, .testimonial-card').forEach(element => {
-            observer.observe(element);
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.padding = '0.5rem 2rem';
-                navbar.style.background = '#fff';
-            } else {
-                navbar.style.padding = '1rem 2rem';
-                navbar.style.background = '#fff';
-            }
-        });
-    </script>
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+      });
+    }
+  </script>
 </body>
 </html>
