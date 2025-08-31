@@ -264,6 +264,33 @@
     /* Font Awesome icons in service cards */
     .service .icon { font-size: 38px; line-height: 1; color: #cfe3ff; }
 
+    /* On-site payment banner (distinct from standard badges) */
+    .pay-note{
+      display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+      padding:12px 14px; margin:8px 0 22px;
+      border:1px dashed rgba(16,185,129,.45);
+      background:linear-gradient(180deg, rgba(16,185,129,.18), rgba(16,185,129,.08));
+      border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.12);
+    }
+    .pay-note .label{
+      font-weight:800; letter-spacing:.2px;
+      color:#fff;
+      background:linear-gradient(135deg,#10b981,#34d399);
+      padding:.5rem .75rem; border-radius:10px; border:0;
+    }
+    .pay-note .token{
+      color:#d1fae5;
+      background:rgba(16,185,129,.14);
+      border:1px solid rgba(16,185,129,.35);
+      padding:.45rem .7rem; border-radius:8px; /* more square than your pill chips */
+    }
+    .pay-note .token.is-preferred{
+      outline:2px solid rgba(16,185,129,.55);
+      background:rgba(16,185,129,.22);
+    }
+
+
+
   </style>
 </head>
 <body>
@@ -306,19 +333,34 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <h1>24/7 roadside help, fast and professional</h1>
-        <p>Licensed technicians. Live dispatch. Typical arrival in 15 to 30 minutes in covered areas. From jump starts to towing, MyRoad has you covered.</p>
-        <div class="badges">
-          <span class="chip">Verified techs</span>
-          <span class="chip">Live tracking</span>
-          <span class="chip">Nationwide partners</span>
-          <span class="chip">Transparent pricing</span>
-        </div>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="tel:+17032963523" aria-label="Call MyRoad now">Call now: +1 (703) 296-3523</a>
-          <a class="btn btn-ghost" href="#services">View services & prices</a>
-        </div>
+      <h1>24/7 roadside help, fast and professional</h1>
+      <p>Licensed technicians. Live dispatch. Typical arrival in 15 to 30 minutes in covered areas. From jump starts to towing, RoadGuard has you covered.</p>
+
+      <div class="badges">
+        <span class="chip">Verified techs</span>
+        <span class="chip">Live tracking</span>
+        <span class="chip">Nationwide partners</span>
+        <span class="chip">Transparent pricing</span>
       </div>
+
+      <!-- On-site payment note -->
+      <div class="pay-note" role="note" aria-label="On-site payment options">
+        <span class="label">On-site payment</span>
+        <span class="token is-preferred">Cash (preferred)</span>
+        <span class="token">Zelle</span>
+        <span class="token">Cash App</span>
+        <span class="token">Venmo</span>
+        <span class="token">Mastercard</span>
+        <span class="token">Visa</span>
+      </div>
+
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:1800ROADHELP" aria-label="Call RoadGuard now">Call now: 1-800-ROADHELP</a>
+        <a class="btn btn-ghost" href="#services">View services & prices</a>
+      </div>
+    </div>
+
       <!-- (aside removed as per your change) -->
     </div>
   </section>
@@ -616,6 +658,5 @@
   </script>
 </body>
 </html>
-
 
 
